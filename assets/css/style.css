@@ -35,6 +35,8 @@ a:hover {
   padding: 0 24px;
 }
 
+/* HEADER */
+
 .site-header {
   border-bottom: 1px solid var(--border);
   background: #fff;
@@ -82,6 +84,8 @@ a:hover {
   width: 100%;
 }
 
+/* MAIN LAYOUT */
+
 main {
   padding: 80px 0;
 }
@@ -108,6 +112,8 @@ main {
   color: var(--text-muted);
   margin-top: 8px;
 }
+
+/* BUTTONS */
 
 .btn-row {
   display: flex;
@@ -138,6 +144,8 @@ main {
   color: var(--primary);
 }
 
+/* SECTIONS */
+
 .section {
   padding: 80px 0;
 }
@@ -164,6 +172,8 @@ main {
   margin: 0 auto;
 }
 
+/* GRIDS */
+
 .what-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -185,6 +195,8 @@ main {
   font-size: 14px;
 }
 
+/* SPLIT LAYOUT */
+
 .split {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -197,6 +209,8 @@ main {
   font-weight: 500;
 }
 
+/* LIST STYLE */
+
 .list {
   font-size: 14px;
   color: var(--text-muted);
@@ -206,6 +220,8 @@ main {
 .plan-list p {
   margin-bottom: 12px;
 }
+
+/* PRICING */
 
 .pricing-grid {
   display: grid;
@@ -247,6 +263,8 @@ main {
   content: "• ";
 }
 
+/* FOOTER */
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 24px 0;
@@ -266,6 +284,8 @@ main {
   display: flex;
   gap: 16px;
 }
+
+/* RESPONSIVE */
 
 @media (max-width: 900px) {
   .what-grid {
