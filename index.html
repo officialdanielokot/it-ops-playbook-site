@@ -6,6 +6,17 @@
     <title>IT Ops Playbook – Home</title>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
+  <script>
+  const btn = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".nav");
+  if (btn && nav) {
+    btn.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+</script>
+
   <body>
     <header class="site-header">
       <div class="container header-inner">
@@ -15,6 +26,7 @@
             alt="COGNITO TECHNOLOGIES"
           />
         </div>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
         <nav class="nav">
           <a href="index.html">Home</a>
           <a href="product.html">Product</a>

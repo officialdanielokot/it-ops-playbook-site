@@ -6,6 +6,10 @@
   --border: #e8e8e8;
   --panel: #f7f7f7;
   --container-width: 960px;
+
+  /* new layout helpers */
+  --pad: clamp(16px, 4vw, 28px);
+  --radius: 14px;
 }
 
 * {
@@ -18,6 +22,7 @@ body {
   color: var(--text);
   background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
 }
 
 a {
@@ -29,52 +34,68 @@ a:hover {
   text-decoration: underline;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--pad);
 }
 
 /* HEADER */
 
 .site-header {
   padding: 12px 0;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
+  position: relative; /* enables mobile menu positioning */
 }
+
 .logo {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .logo img {
-  height: 28px;
+  /* slightly larger + responsive */
+  height: clamp(40px, 4.2vw, 56px);
   width: auto;
   display: block;
 }
 
-
-
+/* Desktop nav */
 .nav {
   display: flex;
   gap: 24px;
   font-size: 14px;
+  align-items: center;
 }
 
 .nav a {
   position: relative;
-  padding-bottom: 2px;
+  padding: 8px 2px;
 }
 
 .nav a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 4px;
   width: 0;
   height: 1px;
   background: var(--primary);
@@ -85,27 +106,40 @@ a:hover {
   width: 100%;
 }
 
+/* Mobile menu button (you must add the button in HTML) */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
 /* MAIN LAYOUT */
 
 main {
-  padding: 80px 0;
+  padding: 72px 0;
 }
 
 .hero {
   text-align: center;
-  padding: 120px 0 80px;
+  padding: clamp(56px, 8vw, 110px) 0 clamp(40px, 6vw, 72px);
 }
 
 .hero-title {
-  font-size: clamp(40px, 6vw, 64px);
+  font-size: clamp(34px, 6vw, 64px);
   font-weight: 300;
-  margin-bottom: 16px;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
-  font-size: 22px;
+  font-size: clamp(16px, 2.2vw, 22px);
   color: var(--text-muted);
-  margin-bottom: 24px;
+  margin: 0 auto 24px;
+  max-width: 62ch;
 }
 
 .hero-microcopy {
@@ -119,20 +153,22 @@ main {
 .btn-row {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
-  border-radius: 10px;
+  padding: 14px 24px;
+  border-radius: 12px;
   font-size: 16px;
   border: 1px solid transparent;
   cursor: pointer;
   background: none;
+  min-height: 44px; /* better touch target */
 }
 
 .btn-primary {
@@ -148,12 +184,12 @@ main {
 /* SECTIONS */
 
 .section {
-  padding: 80px 0;
+  padding: clamp(48px, 7vw, 80px) 0;
 }
 
 .section h2 {
-  font-size: 24px;
-  margin-bottom: 24px;
+  font-size: clamp(20px, 2.6vw, 24px);
+  margin-bottom: 18px;
   font-weight: 500;
   text-align: left;
 }
@@ -178,8 +214,8 @@ main {
 .what-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 32px;
-  margin-top: 32px;
+  gap: 28px;
+  margin-top: 28px;
 }
 
 .card {
@@ -201,7 +237,7 @@ main {
 .split {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 48px;
+  gap: 40px;
 }
 
 .split h3 {
@@ -227,14 +263,14 @@ main {
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
-  margin-top: 40px;
+  gap: 24px;
+  margin-top: 32px;
 }
 
 .pricing-card {
   border-radius: 16px;
   border: 1px solid var(--border);
-  padding: 24px;
+  padding: 22px;
 }
 
 .pricing-card.highlight {
@@ -286,31 +322,72 @@ main {
   gap: 16px;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE + MOBILE NAV */
 
+/* switch to hamburger + dropdown menu */
 @media (max-width: 900px) {
   .what-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .split {
     grid-template-columns: 1fr;
   }
+
   .pricing-grid {
     grid-template-columns: 1fr;
   }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .nav {
-    display: none; /* MVP: hide nav on small screens */
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 12px 10px;
+    border-radius: 10px;
+  }
+
+  .nav a:hover {
+    text-decoration: none;
+    background: var(--panel);
+  }
+
+  .nav a::after {
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
-  .container {
-    padding: 0 16px;
-  }
   main {
     padding: 56px 0;
   }
+
   .section {
     padding: 56px 0;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 18px;
   }
 }
