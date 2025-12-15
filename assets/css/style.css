@@ -61,6 +61,10 @@ img {
   background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
+.site-header {
+  overflow: hidden; /* prevents weird header growth */
+}
+
 
 /* Tesla-like header shell (wider than page container) */
 .header-shell {
@@ -78,10 +82,35 @@ img {
 }
 
 /* Left */
+/* Logo (fix oversized logo) */
 .logo {
   display: inline-flex;
   align-items: center;
+  max-height: 56px;           /* hard cap */
 }
+
+.logo img {
+  height: 56px;               /* desktop target */
+  max-height: 56px;           /* prevents blowing up */
+  width: auto;
+  max-width: 180px;           /* prevents super wide logos */
+  object-fit: contain;        /* keeps aspect ratio inside box */
+  display: block;
+}
+
+/* Smaller logo on mobile */
+@media (max-width: 900px) {
+  .logo {
+    max-height: 44px;
+  }
+
+  .logo img {
+    height: 44px;
+    max-height: 44px;
+    max-width: 140px;
+  }
+}
+
 
 /* Center – TRUE visual center */
 .brand-center {
