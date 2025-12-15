@@ -78,6 +78,19 @@ img {
   display: block;
 }
 
+.brand-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none; /* prevents interference with nav */
+}
+
+
 /* Desktop nav */
 .nav {
   display: flex;
@@ -120,6 +133,12 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  .brand-center {
+    font-size: 11px;
+    letter-spacing: 0.14em;
   }
 }
 
