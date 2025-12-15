@@ -6,16 +6,7 @@
     <title>IT Ops Playbook – Home</title>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <script>
-  const btn = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".nav");
-  if (btn && nav) {
-    btn.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  }
-</script>
+
 
   <body>
     <header class="site-header">
@@ -150,5 +141,15 @@
         </div>
       </div>
     </footer>
+      <script>
+  const btn = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".nav");
+  if (btn && nav) {
+    btn.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+</script>
   </body>
 </html>
