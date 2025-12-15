@@ -5,11 +5,16 @@
   --bg: #ffffff;
   --border: #e8e8e8;
   --panel: #f7f7f7;
+
   --container-width: 960px;
 
-  /* new layout helpers */
+  /* layout helpers */
   --pad: clamp(16px, 4vw, 28px);
   --radius: 14px;
+
+  /* header "tesla-ish" width */
+  --header-width: 1320px;
+  --header-pad: clamp(14px, 2.5vw, 40px);
 }
 
 * {
@@ -40,6 +45,7 @@ img {
   display: block;
 }
 
+/* normal page container */
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
@@ -49,46 +55,47 @@ img {
 /* HEADER */
 
 .site-header {
-  padding: 12px 0;
   position: sticky;
   top: 0;
-  background: var(--bg);
   z-index: 50;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
 
+/* Tesla-like header shell (wider than page container) */
+.header-shell {
+  max-width: var(--header-width);
+  margin: 0 auto;
+  padding: 0 var(--header-pad);
+}
+
+/* 3-column grid header */
 .header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  position: relative; /* enables mobile menu positioning */
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo img {
-  /* slightly larger + responsive */
-  height: clamp(40px, 4.2vw, 56px);
-  width: auto;
-  display: block;
-}
-
-.header-grid{
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  gap: 16px;
+  position: relative; /* enables mobile menu positioning */
+  min-height: 64px;
 }
 
-.logo { justify-self: start; }
-.nav { justify-self: end; }
+/* left */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+}
 
-.brand-center{
+.logo img {
+  height: clamp(44px, 3.2vw, 64px); /* bigger on desktop */
+  width: auto;
+}
+
+/* middle */
+.brand-center {
   justify-self: center;
+  text-align: center;
   font-size: 13px;
   letter-spacing: 0.18em;
   font-weight: 500;
@@ -96,9 +103,9 @@ img {
   white-space: nowrap;
 }
 
-
-/* Desktop nav */
+/* right */
 .nav {
+  justify-self: end;
   display: flex;
   gap: 24px;
   font-size: 14px;
@@ -109,8 +116,6 @@ img {
   position: relative;
   padding: 8px 2px;
 }
-.nav-toggle { justify-self: end; }
-
 
 .nav a::after {
   content: "";
@@ -126,9 +131,11 @@ img {
 .nav a:hover::after {
   width: 100%;
 }
-/* Mobile menu button (hidden by default / desktop) */
+
+/* hamburger (hidden on desktop) */
 .nav-toggle {
   display: none;
+  justify-self: end;
   background: transparent;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -136,36 +143,6 @@ img {
   line-height: 1;
   cursor: pointer;
 }
-@media (max-width: 900px) {
-  .nav-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-@media (max-width: 900px){
-  .header-grid{
-    grid-template-columns: auto 1fr auto;
-  }
-  .brand-center{
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-align: center;
-  }
-  .nav{
-    justify-self: stretch;
-  }
-}
- 
-}
-@media (max-width: 600px) {
-  .brand-center {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-  }
-}
-
-
-
 
 /* MAIN LAYOUT */
 
@@ -374,20 +351,19 @@ main {
 
 /* RESPONSIVE + MOBILE NAV */
 
-/* switch to hamburger + dropdown menu */
 @media (max-width: 900px) {
-  .what-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* header grid becomes: logo | brand | button */
+  .header-inner {
+    grid-template-columns: auto 1fr auto;
+    min-height: 60px;
   }
 
-  .split {
-    grid-template-columns: 1fr;
+  .brand-center {
+    font-size: 11px;
+    letter-spacing: 0.14em;
   }
 
-  .pricing-grid {
-    grid-template-columns: 1fr;
-  }
-
+  /* show hamburger, hide desktop nav */
   .nav-toggle {
     display: inline-flex;
     align-items: center;
@@ -407,6 +383,7 @@ main {
     flex-direction: column;
     gap: 10px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    justify-self: stretch;
   }
 
   .nav.is-open {
@@ -425,6 +402,19 @@ main {
 
   .nav a::after {
     display: none;
+  }
+
+  /* layout grids */
+  .what-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
   }
 }
 
