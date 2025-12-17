@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annual Updates – Verify Core License</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg" />
+    <link rel="alternate icon" href="assets/images/logo-light.svg" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      /* small page-specific styles that match your design system */
+      .form-card {
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        padding: 22px;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .field { margin-top: 14px; }
+      .label { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; display:block; }
+      .input {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        font-size: 16px;
+        outline: none;
+      }
+      .input:focus { border-color: var(--primary); }
+      .error { margin-top: 12px; color: #b00020; font-size: 14px; }
+      .hint { margin-top: 10px; font-size: 13px; color: var(--text-muted); }
+      .spinner { display:none; margin-left:10px; font-size:14px; color: var(--text-muted); }
+      .btn[disabled] { opacity: 0.65; cursor: not-allowed; }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-shell">
+        <div class="header-inner">
+          <a class="logo" href="index.html">
+            <img src="assets/images/logo-light.png" alt="Cognito IT" />
+          </a>
+
+          <div class="brand-center">COGNITO TECHNOLOGIES</div>
+
+          <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
+
+          <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="product.html">Product</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" style="padding-bottom: 28px;">
+        <div class="container">
+          <h1 class="hero-title">Annual Updates</h1>
+          <p class="hero-subtitle">
+            Annual Updates &amp; Standards Refresh is available to <strong>Core Edition</strong> customers.
+            Enter your Core Edition license key to continue.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0;">
+        <div class="container">
+          <div class="form-card">
+            <div class="field">
+              <label class="label" for="licenseKey"><strong>Core Edition license key</strong></label>
+              <input class="input" id="licenseKey" autocomplete="off" placeholder="Paste your license key from the receipt email / My Orders" />
+              <div class="hint">
+                Tip: Find your license key in your purchase email receipt, or in Lemon Squeezy under “My Orders”.
+              </div>
+            </div>
+
+            <div class="btn-row" style="justify-content:flex-start; margin-top: 18px;">
+              <button class="btn btn-primary" id="verifyBtn">
+                Verify &amp; continue
+                <span class="spinner" id="spinner">Checking…</span>
+              </button>
+              <a class="btn btn-outline" href="pricing.html">Back to pricing</a>
+            </div>
+
+            <div class="error" id="errorMsg" role="alert" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>© COGNITO IT PTY LTD</div>
+        <div class="footer-links">
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile nav (same as your index.html)
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".nav-toggle");
+        const nav = document.querySelector(".nav");
+        if (btn && nav) {
+          btn.addEventListener("click", () => {
+            const open = nav.classList.toggle("is-open");
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+        }
+
+        // License verification
+        const VERIFY_ENDPOINT = "https://cognitoit-playbook-core-license-check.d-okot.workers.dev/verify-core"; // <-- replace
+        const SUB_CHECKOUT_URL_FALLBACK = ""; // optional fallback (leave blank)
+
+        const keyEl = document.getElementById("licenseKey");
+        const btnEl = document.getElementById("verifyBtn");
+        const errEl = document.getElementById("errorMsg");
+        const spEl = document.getElementById("spinner");
+
+        async function verify() {
+          errEl.textContent = "";
+          const license_key = (keyEl.value || "").trim();
+
+          if (!license_key) {
+            errEl.textContent = "Please enter your Core Edition license key.";
+            return;
+          }
+
+          btnEl.disabled = true;
+          spEl.style.display = "inline";
+
+          try {
+            const res = await fetch(VERIFY_ENDPOINT, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ license_key })
+            });
+
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok || !data.ok) {
+              errEl.textContent = data.error || "License key could not be verified. Please check the key and try again.";
+              return;
+            }
+
+            // Redirect to subscription checkout
+            if (data.redirect) {
+              window.location.href = data.redirect;
+              return;
+            }
+
+            if (SUB_CHECKOUT_URL_FALLBACK) {
+              window.location.href = SUB_CHECKOUT_URL_FALLBACK;
+              return;
+            }
+
+            errEl.textContent = "Verified, but no subscription redirect is configured.";
+          } catch (e) {
+            errEl.textContent = "Network error. Please try again.";
+          } finally {
+            btnEl.disabled = false;
+            spEl.style.display = "none";
+          }
+        }
+
+        btnEl.addEventListener("click", verify);
+        keyEl.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") verify();
+        });
+      });
+    </script>
+  </body>
+</html>
