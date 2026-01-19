@@ -4,15 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT Ops Playbook – Product</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg">
-<link rel="alternate icon" href="assets/images/logo-light.svg">
 
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg" />
+    <link rel="alternate icon" href="assets/images/logo-light.svg" />
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Page-scoped tweaks only: aligns layout with your global style.css without fighting it -->
+    <style>
+      .product-hero {
+        padding-top: 56px;
+        padding-bottom: 22px;
+      }
+
+      .product-hero .hero-title {
+        margin-bottom: 8px;
+        text-align: left;
+      }
+
+      .product-hero .hero-subtitle {
+        text-align: left;
+        max-width: 68ch;
+        margin: 0 0 14px 0;
+      }
+
+      .product-hero .lead {
+        max-width: 72ch;
+        margin: 0;
+      }
+
+      .product-hero .btn-row {
+        justify-content: flex-start;
+        margin-top: 22px;
+      }
+
+      /* Small readability improvements for "What's inside" */
+      .what-grid {
+        margin-top: 16px;
+      }
+
+      /* Licensing microcopy: consistent, subtle */
+      .microcopy {
+        margin-top: 12px;
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.45;
+      }
+
+      .microcopy a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    </style>
   </head>
 
-
   <body>
-     <header class="site-header">
+    <header class="site-header">
       <div class="header-shell">
         <div class="header-inner">
           <a class="logo" href="index.html">
@@ -25,27 +71,47 @@
 
           <nav class="nav">
             <a href="index.html">Home</a>
-            <a href="product.html">Product</a>
+            <a href="product.html" aria-current="page">Product</a>
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
           </nav>
-        </div>  
-
+        </div>
+      </div>
     </header>
 
     <main>
-      <section class="section">
+      <!-- HERO -->
+      <section class="section product-hero">
         <div class="container section-small">
-          <h1 class="hero-title" style="font-size:40px; text-align:left;">IT Ops Playbook v1.1</h1>
-          <p class="hero-subtitle" style="text-align:left; font-size:18px;">A complete operational toolkit for modern IT teams.</p>
-          <p>Hundreds of SOPs, checklists, knowledge base articles and evidence templates, organised into a structure you can deploy in hours instead of months.</p>
-          <div class="btn-row" style="justify-content:flex-start; margin-top:24px;">
-            <a class="btn btn-primary" href="https://congnitoit.lemonsqueezy.com/buy/df4f4f14-fc14-4483-a685-74dd0750bad6" target="_blank" rel="noopener">Buy Now</a>
+          <h1 class="hero-title">IT Ops Playbook v1.1</h1>
+          <p class="hero-subtitle">A complete operational toolkit for modern IT teams.</p>
+          <p class="lead">
+            Hundreds of SOPs, checklists, knowledge base articles and evidence templates, organised into a structure you can deploy in hours instead of months.
+          </p>
+
+          <div class="btn-row">
+            <!-- FIXED: cognitoit (not congnitoit) -->
+            <a
+              class="btn btn-primary"
+              href="https://cognitoit.lemonsqueezy.com/buy/df4f4f14-fc14-4483-a685-74dd0750bad6"
+              target="_blank"
+              rel="noopener"
+            >
+              Buy Now
+            </a>
+          </div>
+
+          <!-- C: per-org licensing clarity + ULA link -->
+          <div class="microcopy">
+            Licensed <strong>per organisation</strong>. Each organisation requires its own Core Edition license key.
+            Use of the license key is governed by the
+            <a href="https://cognitoit.com/legal/it-ops-playbook-ula.html" target="_blank" rel="noopener">Universal License Agreement (ULA)</a>.
           </div>
         </div>
       </section>
 
+      <!-- WHAT'S INSIDE -->
       <section class="section">
         <div class="container">
           <h2>What’s inside</h2>
@@ -70,6 +136,7 @@
         </div>
       </section>
 
+      <!-- FRAMEWORKS -->
       <section class="section section-center">
         <div class="container section-small">
           <h2>Supported frameworks</h2>
@@ -85,22 +152,23 @@
         <div>© COGNITO IT PTY LTD</div>
         <div class="footer-links">
           <a href="terms.html">Terms</a>
+          <a href="https://cognitoit.com/legal/it-ops-playbook-ula.html" target="_blank" rel="noopener">ULA</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
     </footer>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.querySelector(".nav-toggle");
-    const nav = document.querySelector(".nav");
-    if (!btn || !nav) return;
 
-    btn.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  });
-</script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".nav-toggle");
+        const nav = document.querySelector(".nav");
+        if (!btn || !nav) return;
 
+        btn.addEventListener("click", () => {
+          const open = nav.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
+    </script>
   </body>
 </html>
