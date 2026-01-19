@@ -3,38 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Annual Updates – Verify Core License</title>
+    <title>Annual Updates – Core License Verification</title>
+
     <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg" />
     <link rel="alternate icon" href="assets/images/logo-light.svg" />
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Page-scoped helpers only (inherits global design system) -->
     <style>
-      /* small page-specific styles that match your design system */
-      .form-card {
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        padding: 22px;
-        max-width: 640px;
-        margin: 0 auto;
+      .license-form {
+        margin-top: 24px;
       }
-      .field { margin-top: 14px; }
-      .label { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; display:block; }
-      .input {
+
+      .license-input {
         width: 100%;
         padding: 14px 16px;
-        border-radius: 12px;
-        border: 1px solid var(--border);
         font-size: 16px;
-        outline: none;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
       }
-      .input:focus { border-color: var(--primary); }
-      .error { margin-top: 12px; color: #b00020; font-size: 14px; }
-      .hint { margin-top: 10px; font-size: 13px; color: var(--text-muted); }
-      .spinner { display:none; margin-left:10px; font-size:14px; color: var(--text-muted); }
-      .btn[disabled] { opacity: 0.65; cursor: not-allowed; }
+
+      .license-input:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+
+      .form-error {
+        display: none;
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid #f3c2c2;
+        background: #fff5f5;
+        color: #8a1f1f;
+        font-size: 14px;
+      }
+
+      .form-status {
+        display: none;
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--text-muted);
+      }
+
+      .hint {
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.45;
+      }
+
+      .btn[disabled] {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
     </style>
   </head>
 
   <body>
+    <!-- HEADER -->
     <header class="site-header">
       <div class="header-shell">
         <div class="header-inner">
@@ -57,8 +84,9 @@
       </div>
     </header>
 
+    <!-- MAIN -->
     <main>
-      <section class="hero" style="padding-bottom: 28px;">
+      <section class="hero">
         <div class="container">
           <h1 class="hero-title">Annual Updates</h1>
           <p class="hero-subtitle">
@@ -68,73 +96,101 @@
         </div>
       </section>
 
-      <section class="section" style="padding-top: 0;">
-        <div class="container">
-          <div class="form-card">
-            <div class="field">
-              <label class="label" for="licenseKey"><strong>Core Edition license key</strong></label>
-              <input class="input" id="licenseKey" autocomplete="off" placeholder="Paste your license key from the receipt email / My Orders" />
-              <div class="hint">
-                Tip: Find your license key in your purchase email receipt, or in Lemon Squeezy under “My Orders”.
-              </div>
+      <section class="section section-center">
+        <div class="container section-small">
+          <form class="license-form" onsubmit="return false;">
+            <input
+              id="licenseKey"
+              class="license-input"
+              placeholder="Paste your Core Edition license key"
+              autocomplete="off"
+            />
+
+            <div class="hint">
+              Find your license key in your purchase email receipt or in Lemon Squeezy under “My Orders”.
+              Use of this key is governed by the
+              <a href="https://cognitoit.com/legal/it-ops-playbook-ula.html" target="_blank" rel="noopener">ULA</a>.
             </div>
 
-            <div class="btn-row" style="justify-content:flex-start; margin-top: 18px;">
-              <button class="btn btn-primary" id="verifyBtn">
+            <div class="btn-row" style="margin-top: 20px;">
+              <button id="verifyBtn" class="btn btn-primary" type="button">
                 Verify &amp; continue
-                <span class="spinner" id="spinner">Checking…</span>
               </button>
               <a class="btn btn-outline" href="pricing.html">Back to pricing</a>
             </div>
 
-            <div class="error" id="errorMsg" role="alert" aria-live="polite"></div>
-          </div>
+            <div id="statusMsg" class="form-status" aria-live="polite"></div>
+            <div id="errorMsg" class="form-error" role="alert"></div>
+          </form>
         </div>
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container footer-inner">
         <div>© COGNITO IT PTY LTD</div>
         <div class="footer-links">
           <a href="terms.html">Terms</a>
+          <a href="https://cognitoit.com/legal/it-ops-playbook-ula.html" target="_blank" rel="noopener">ULA</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
     </footer>
 
+    <!-- SCRIPT -->
     <script>
-      // Mobile nav (same as your index.html)
       document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.querySelector(".nav-toggle");
+        // Mobile nav
+        const navBtn = document.querySelector(".nav-toggle");
         const nav = document.querySelector(".nav");
-        if (btn && nav) {
-          btn.addEventListener("click", () => {
+        if (navBtn && nav) {
+          navBtn.addEventListener("click", () => {
             const open = nav.classList.toggle("is-open");
-            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            navBtn.setAttribute("aria-expanded", open ? "true" : "false");
           });
         }
 
         // License verification
-        const VERIFY_ENDPOINT = "https://cognitoit-playbook-core-license-check.d-okot.workers.dev/verify-core"; // <-- replace
-        const SUB_CHECKOUT_URL_FALLBACK = ""; // optional fallback (leave blank)
+        const VERIFY_ENDPOINT =
+          "https://cognitoit-playbook-core-license-check.d-okot.workers.dev";
 
         const keyEl = document.getElementById("licenseKey");
         const btnEl = document.getElementById("verifyBtn");
         const errEl = document.getElementById("errorMsg");
-        const spEl = document.getElementById("spinner");
+        const statusEl = document.getElementById("statusMsg");
+
+        function showError(msg) {
+          errEl.textContent = msg;
+          errEl.style.display = "block";
+        }
+
+        function clearError() {
+          errEl.style.display = "none";
+        }
+
+        function showStatus(msg) {
+          statusEl.textContent = msg;
+          statusEl.style.display = "block";
+        }
+
+        function clearStatus() {
+          statusEl.style.display = "none";
+        }
 
         async function verify() {
-          errEl.textContent = "";
-          const license_key = (keyEl.value || "").trim();
+          clearError();
+          clearStatus();
 
+          const license_key = (keyEl.value || "").trim();
           if (!license_key) {
-            errEl.textContent = "Please enter your Core Edition license key.";
+            showError("Please paste your Core Edition license key.");
+            keyEl.focus();
             return;
           }
 
           btnEl.disabled = true;
-          spEl.style.display = "inline";
+          showStatus("Checking your license key…");
 
           try {
             const res = await fetch(VERIFY_ENDPOINT, {
@@ -146,27 +202,17 @@
             const data = await res.json().catch(() => ({}));
 
             if (!res.ok || !data.ok) {
-              errEl.textContent = data.error || "License key could not be verified. Please check the key and try again.";
+              clearStatus();
+              showError(data.error || "We couldn’t verify that license key. Please try again.");
               return;
             }
 
-            // Redirect to subscription checkout
-            if (data.redirect) {
-              window.location.href = data.redirect;
-              return;
-            }
-
-            if (SUB_CHECKOUT_URL_FALLBACK) {
-              window.location.href = SUB_CHECKOUT_URL_FALLBACK;
-              return;
-            }
-
-            errEl.textContent = "Verified, but no subscription redirect is configured.";
-          } catch (e) {
-            errEl.textContent = "Network error. Please try again.";
+            window.location.href = data.redirect;
+          } catch {
+            clearStatus();
+            showError("Network error verifying your license key. Please try again.");
           } finally {
             btnEl.disabled = false;
-            spEl.style.display = "none";
           }
         }
 
