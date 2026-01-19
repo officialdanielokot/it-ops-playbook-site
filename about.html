@@ -4,10 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT Ops Playbook – About</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg">
-<link rel="alternate icon" href="assets/images/logo-light.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg" />
+    <link rel="alternate icon" href="assets/images/logo-light.svg" />
 
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      /* Light-touch enhancements for this page only (keeps global CSS untouched) */
+      .section-tight { padding-top: clamp(22px, 4vw, 44px); padding-bottom: clamp(22px, 4vw, 44px); }
+      .lede { max-width: 78ch; }
+      .bullet-list { margin: 12px 0 0; }
+      .bullet-list ul { margin: 10px 0 0; padding-left: 18px; }
+      .bullet-list li { margin: 8px 0; }
+      .callout {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        border-radius: var(--radius);
+        padding: clamp(14px, 2.6vw, 20px);
+      }
+      .callout p { margin: 0; }
+      .table-wrap {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--bg);
+      }
+      table.support {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.98rem;
+      }
+      table.support thead th {
+        text-align: left;
+        background: var(--panel);
+        padding: 14px 14px;
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+      }
+      table.support tbody td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      table.support tbody tr:last-child td { border-bottom: none; }
+      .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 0.85rem;
+        line-height: 1.2;
+        background: #fff;
+        white-space: nowrap;
+        margin: 2px 6px 2px 0;
+      }
+      .tag.full { border-color: rgba(0,0,0,0.14); }
+      .tag.partial { border-color: rgba(0,0,0,0.14); opacity: 0.9; }
+      .tag.notsupported { border-color: rgba(0,0,0,0.14); opacity: 0.85; }
+      .muted { color: var(--text-muted); }
+      @media (max-width: 860px) {
+        table.support thead { display: none; }
+        table.support, table.support tbody, table.support tr, table.support td { display: block; width: 100%; }
+        table.support tr { border-bottom: 1px solid var(--border); }
+        table.support tr:last-child { border-bottom: none; }
+        table.support td { border-bottom: none; padding: 10px 14px; }
+        table.support td[data-label]::before {
+          content: attr(data-label);
+          display: block;
+          font-weight: 600;
+          margin-bottom: 6px;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -29,51 +97,273 @@
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
           </nav>
-        </div>  
-
+        </div>
+      </div>
     </header>
 
     <main>
-      <section class="section">
+      <section class="section section-tight">
         <div class="container section-small">
           <h1 class="hero-title" style="font-size:40px; text-align:left;">About the IT Ops Playbook</h1>
-          <p>Built by COGNITO IT PTY LTD, the IT Ops Playbook was created to solve a simple but universal problem: IT teams are expected to run like mature organisations, but most don’t have the time to build mature processes.</p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <h2>The problem we saw</h2>
-          <p class="list">
-            • Lack of structure – everyone works differently and nothing is standardised.<br>
-            • Lack of time – teams are busy keeping systems running, not writing documentation.<br>
-            • Compliance pressure – ISO, SOC 2, Essential Eight, PCI and others all demand clear evidence and consistent controls.
+          <p class="lede">
+            Built by <strong>COGNITO IT PTY LTD</strong>, the IT Ops Playbook was created to solve a simple but universal
+            problem: IT teams are expected to run like mature organisations, but most don’t have the time to design mature
+            processes, document them, and then map them to audit expectations.
           </p>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section-tight">
+        <div class="container">
+          <h2>The problem we saw</h2>
+          <div class="bullet-list">
+            <ul>
+              <li><strong>Lack of structure</strong> — everyone works differently and nothing is standardised.</li>
+              <li><strong>Lack of time</strong> — teams are busy keeping systems running, not writing documentation.</li>
+              <li>
+                <strong>Compliance pressure</strong> — ISO 27001, SOC 2, Essential Eight and other frameworks demand clear evidence,
+                consistent controls, and repeatable operating discipline.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
         <div class="container">
           <h2>The idea behind the Playbook</h2>
-          <p>Create one complete operational blueprint that any IT team can adopt, customise and deploy within hours, not months.</p>
+          <p class="lede">
+            Create one complete operational blueprint that an IT team can adopt, customise, and deploy quickly—without
+            compromising quality. The outcome is board-ready, auditor-acceptable operational documentation that supports
+            real delivery, not shelfware.
+          </p>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section-tight">
         <div class="container">
           <h2>Our approach</h2>
-          <p>The Playbook is designed to be clear, comprehensive, actionable, evidence-driven, aligned to global standards and ready to import into your tools.</p>
+          <p class="lede">
+            The Playbook is designed to be <strong>clear</strong>, <strong>comprehensive</strong>, <strong>actionable</strong>,
+            and <strong>evidence-driven</strong>—aligned to recognised standards and structured to import cleanly into common
+            documentation platforms.
+          </p>
+
+          <div class="callout" style="margin-top:16px;">
+            <p>
+              <strong>What this means in practice:</strong>
+              you get a repeatable operating model, high-quality policies and procedures, and audit-aligned evidence mapping—so
+              you can improve service delivery while increasing compliance confidence.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section-tight">
+        <div class="container">
+          <h2>What’s included today</h2>
+          <p class="lede muted">
+            The current release focuses on the highest-value deliverables that decision-makers care about: clarity, governance,
+            and audit-grade evidence—delivered in formats that import cleanly.
+          </p>
+
+          <div class="container split" style="padding:0; margin-top:14px;">
+            <div class="callout">
+              <h3 style="margin-top:0;">Playbook Core</h3>
+              <p class="muted" style="margin-top:6px;">
+                SOPs, checklists, runbooks, policies and knowledge-base articles for real-world IT operations—structured for easy
+                navigation and adoption.
+              </p>
+            </div>
+
+            <div class="callout">
+              <h3 style="margin-top:0;">Compliance Tools</h3>
+              <p class="muted" style="margin-top:6px;">
+                A compliance mapping matrix, Statement of Applicability (ISO 27001 Annex A), and executive-ready coverage
+                artefacts designed to support audit conversations.
+              </p>
+            </div>
+          </div>
+
+          <div class="container split" style="padding:0; margin-top:14px;">
+            <div class="callout">
+              <h3 style="margin-top:0;">Guides & Insights</h3>
+              <p class="muted" style="margin-top:6px;">
+                Platform import guides, executive insights and usage guidance to help teams deploy confidently and maintain
+                quality over time.
+              </p>
+            </div>
+
+            <div class="callout">
+              <h3 style="margin-top:0;">Import Packs</h3>
+              <p class="muted" style="margin-top:6px;">
+                <strong>HTML</strong> and <strong>Markdown</strong> packs are included for broad compatibility across common
+                documentation stacks.
+              </p>
+            </div>
+          </div>
+
+          <p class="muted" style="margin-top:14px;">
+            <strong>Roadmap note:</strong> Additional bulk import formats and evidence automation packs will be introduced in future releases.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <h2>Supported platforms</h2>
+          <p class="lede muted">
+            “Support” here means: can you import the Playbook with predictable results using the included packs, without needing
+            a custom migration project.
+          </p>
+
+          <div class="table-wrap" style="margin-top:14px;">
+            <table class="support">
+              <thead>
+                <tr>
+                  <th style="width: 26%;">Platform</th>
+                  <th style="width: 20%;">Support level</th>
+                  <th style="width: 54%;">How we import (today)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- HTML-oriented platforms -->
+                <tr>
+                  <td data-label="Platform"><strong>IT Glue (Kaseya)</strong></td>
+                  <td data-label="Support level"><span class="tag full">Full</span></td>
+                  <td data-label="How we import (today)">
+                    HTML Import Pack (ZIP). Imports HTML documents (and folder structure) at scale.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>Confluence (Atlassian)</strong></td>
+                  <td data-label="Support level"><span class="tag partial">Partial</span></td>
+                  <td data-label="How we import (today)">
+                    HTML pack is usable via copy/paste or per-page import workflows (results vary by editor/settings).
+                    For enterprise deployments, API / marketplace migration tooling may be preferred.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>Notion</strong></td>
+                  <td data-label="Support level"><span class="tag partial">Partial</span></td>
+                  <td data-label="How we import (today)">
+                    Markdown pack is recommended. HTML can be used selectively but formatting and hierarchy may not map 1:1.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>Microsoft SharePoint (Microsoft 365)</strong></td>
+                  <td data-label="Support level"><span class="tag partial">Partial</span></td>
+                  <td data-label="How we import (today)">
+                    Best results via HTML pages or document libraries with curated navigation. Bulk structure may require
+                    SharePoint site design decisions.
+                  </td>
+                </tr>
+
+                <!-- Markdown-native doc stacks -->
+                <tr>
+                  <td data-label="Platform"><strong>GitBook</strong></td>
+                  <td data-label="Support level"><span class="tag full">Full</span></td>
+                  <td data-label="How we import (today)">
+                    Markdown Import Pack (ZIP). Ideal for modern documentation sites with fast publishing workflows.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>MkDocs</strong></td>
+                  <td data-label="Support level"><span class="tag full">Full</span></td>
+                  <td data-label="How we import (today)">
+                    Markdown pack (static-site). Works well for internal portals and Git-based change control.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>Docusaurus</strong></td>
+                  <td data-label="Support level"><span class="tag full">Full</span></td>
+                  <td data-label="How we import (today)">
+                    Markdown pack (static-site). Strong for engineering-led documentation and versioned releases.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>GitHub Pages</strong></td>
+                  <td data-label="Support level"><span class="tag full">Full</span></td>
+                  <td data-label="How we import (today)">
+                    Markdown pack with a generator (MkDocs/Docusaurus/Docsify/Jekyll). Best for controlled, auditable change history.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>Docsify</strong></td>
+                  <td data-label="Support level"><span class="tag full">Full</span></td>
+                  <td data-label="How we import (today)">
+                    Markdown pack (runtime-rendered). Simple setup for fast internal publishing.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>HackMD / HedgeDoc</strong></td>
+                  <td data-label="Support level"><span class="tag partial">Partial</span></td>
+                  <td data-label="How we import (today)">
+                    Markdown content can be imported/pasted and organised; large-scale hierarchy may require scripting or manual curation.
+                  </td>
+                </tr>
+
+                <!-- Platforms we do not claim full support for today -->
+                <tr>
+                  <td data-label="Platform"><strong>Hudu</strong></td>
+                  <td data-label="Support level"><span class="tag partial">Partial</span></td>
+                  <td data-label="How we import (today)">
+                    Best via curated import/migration approach. (Note: CSV-based imports exist for certain data types; dedicated bulk import packs are planned.)
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>BookStack</strong></td>
+                  <td data-label="Support level"><span class="tag partial">Partial</span></td>
+                  <td data-label="How we import (today)">
+                    Recommended via its native import formats and/or API workflows. Markdown pack can be adapted, but hierarchy limits apply.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>Wiki.js</strong></td>
+                  <td data-label="Support level"><span class="tag partial">Partial</span></td>
+                  <td data-label="How we import (today)">
+                    Suitable via API-based import scripts (HTML or Markdown). Best for teams comfortable with a scripted migration workflow.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>Document360</strong></td>
+                  <td data-label="Support level"><span class="tag notsupported">Not supported (HTML import)</span></td>
+                  <td data-label="How we import (today)">
+                    HTML import is not the primary path. If you use Document360, we recommend an alternate conversion workflow.
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Platform"><strong>DokuWiki / MediaWiki</strong></td>
+                  <td data-label="Support level"><span class="tag notsupported">Not supported (direct)</span></td>
+                  <td data-label="How we import (today)">
+                    These typically rely on wiki-specific markup and plugins. Use Markdown packs only with a planned conversion/migration.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout" style="margin-top:14px;">
+            <p>
+              <strong>CSV support:</strong> CSV bulk import will be supported in later versions for platforms that provide stable,
+              validated CSV schemas and predictable field mappings.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
         <div class="container">
           <h2>Our role as your guide</h2>
-          <p>COGNITO IT PTY LTD exists to provide clarity, structure and a ready-made operational system so you can run mature, secure IT operations without starting from a blank page.</p>
+          <p class="lede">
+            <strong>COGNITO IT PTY LTD</strong> exists to provide clarity, structure, and a ready-made operating system—so you can
+            run mature, secure IT operations without starting from a blank page. Customers come first: the deliverables are built
+            to be usable by operators, defensible to auditors, and legible to boards.
+          </p>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section-tight">
         <div class="container split">
           <div>
             <h3>Our mission</h3>
@@ -81,7 +371,7 @@
           </div>
           <div>
             <h3>Our vision</h3>
-            <p>A world where IT operations are predictable, processes are standardised, evidence is ready and compliance is achievable.</p>
+            <p>A world where IT operations are predictable, processes are standardised, evidence is ready, and compliance is achievable.</p>
           </div>
         </div>
       </section>
@@ -96,18 +386,18 @@
         </div>
       </div>
     </footer>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.querySelector(".nav-toggle");
-    const nav = document.querySelector(".nav");
-    if (!btn || !nav) return;
 
-    btn.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  });
-</script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".nav-toggle");
+        const nav = document.querySelector(".nav");
+        if (!btn || !nav) return;
 
+        btn.addEventListener("click", () => {
+          const open = nav.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
+    </script>
   </body>
 </html>
