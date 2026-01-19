@@ -4,13 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT Ops Playbook – Pricing</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg">
-<link rel="alternate icon" href="assets/images/logo-light.svg">
+
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo-light.svg" />
+    <link rel="alternate icon" href="assets/images/logo-light.svg" />
 
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Page-scoped styling: complements your existing CSS without overriding site-wide design -->
+    <style>
+      .pricing-page .hero-title {
+        font-size: clamp(30px, 4vw, 44px);
+        margin-bottom: 8px;
+      }
+      .pricing-page .hero-subtitle {
+        font-size: clamp(16px, 1.4vw, 18px);
+        max-width: 62ch;
+        margin: 0 auto 28px;
+        opacity: 0.9;
+      }
+
+      .pricing-page .pricing-grid {
+        margin-top: 18px;
+        gap: 18px;
+      }
+
+      .pricing-page .pricing-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 22px;
+      }
+
+      .pricing-page .pricing-card h3 {
+        margin: 0;
+      }
+
+      .pricing-page .pricing-price {
+        margin-top: 2px;
+        font-size: clamp(22px, 2.2vw, 28px);
+        line-height: 1.2;
+      }
+
+      .pricing-page .pricing-card p {
+        margin: 0;
+        opacity: 0.9;
+      }
+
+      .pricing-page .pricing-card ul {
+        margin: 10px 0 0;
+      }
+
+      .pricing-page .card-foot {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .pricing-page .microcopy {
+        font-size: 13px;
+        opacity: 0.8;
+        line-height: 1.4;
+      }
+
+      .pricing-page .microcopy a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      /* Make highlight card feel intentional without fighting your global theme */
+      .pricing-page .pricing-card.highlight .microcopy {
+        opacity: 0.85;
+      }
+    </style>
   </head>
 
-  <body>
+  <body class="pricing-page">
     <header class="site-header">
       <div class="header-shell">
         <div class="header-inner">
@@ -20,49 +89,78 @@
 
           <div class="brand-center">COGNITO TECHNOLOGIES</div>
 
-          <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" type="button">☰</button>
+          <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" type="button">
+            ☰
+          </button>
 
           <nav class="nav">
             <a href="index.html">Home</a>
             <a href="product.html">Product</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="pricing.html" aria-current="page">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
           </nav>
-        </div>  
-
+        </div>
+      </div>
     </header>
 
     <main>
       <section class="section section-center">
         <div class="container">
-          <h1 class="hero-title" style="font-size:40px;">Pricing</h1>
-          <p class="hero-subtitle" style="font-size:18px;">Simple, transparent pricing. No surprises.</p>
+          <h1 class="hero-title">Pricing</h1>
+          <p class="hero-subtitle">Simple, transparent pricing. No surprises.</p>
 
           <div class="pricing-grid">
             <div class="pricing-card">
               <h3>One-time purchase</h3>
               <div class="pricing-price">$6,997 AUD</div>
               <p>IT Ops Playbook v1.1</p>
+
               <ul>
                 <li>Full Playbook Core</li>
                 <li>Evidence Kit</li>
                 <li>Compliance Tools</li>
                 <li>Guides &amp; Insights</li>
               </ul>
-              <a class="btn btn-primary" href="https://congnitoit.lemonsqueezy.com/buy/df4f4f14-fc14-4483-a685-74dd0750bad6" target="_blank" rel="noopener">Buy Now</a>
+
+              <div class="card-foot">
+                <!-- FIXED: cognitoit (not congnitoit) -->
+                <a
+                  class="btn btn-primary"
+                  href="https://cognitoit.lemonsqueezy.com/buy/df4f4f14-fc14-4483-a685-74dd0750bad6"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Buy Now
+                </a>
+
+                <div class="microcopy">
+                  Your purchase includes a Core Edition license key. Use or activation of the license key
+                  is governed by our
+                  <a href="https://cognitoit.com/legal/it-ops-playbook-ula.html" target="_blank" rel="noopener">ULA</a>.
+                </div>
+              </div>
             </div>
+
             <div class="pricing-card highlight">
               <h3>Annual updates (optional)</h3>
               <div class="pricing-price">$1,997 AUD / year</div>
-              <p>Requires Core Edition license</p>
+              <p><strong>Requires Core Edition license</strong></p>
               <p>Keep your Playbook aligned as frameworks evolve.</p>
+
               <ul>
                 <li>New versions of the Playbook</li>
                 <li>Updated evidence templates</li>
                 <li>Updated compliance mappings</li>
               </ul>
-              <a class="btn btn-outline" href="annual-updates.html">Subscribe</a>
+
+              <div class="card-foot">
+                <a class="btn btn-outline" href="annual-updates.html">Subscribe</a>
+
+                <div class="microcopy">
+                  You’ll be asked to enter your Core Edition license key before you can subscribe.
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -74,22 +172,23 @@
         <div>© COGNITO IT PTY LTD</div>
         <div class="footer-links">
           <a href="terms.html">Terms</a>
+          <a href="https://cognitoit.com/legal/it-ops-playbook-ula.html" target="_blank" rel="noopener">ULA</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
     </footer>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.querySelector(".nav-toggle");
-    const nav = document.querySelector(".nav");
-    if (!btn || !nav) return;
 
-    btn.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  });
-</script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".nav-toggle");
+        const nav = document.querySelector(".nav");
+        if (!btn || !nav) return;
 
+        btn.addEventListener("click", () => {
+          const open = nav.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
+    </script>
   </body>
 </html>
